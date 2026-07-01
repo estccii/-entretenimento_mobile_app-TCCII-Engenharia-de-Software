@@ -21,7 +21,3 @@ export async function login(email: string, password: string): Promise<AuthRespon
   return response.data;
 }
 
-export async function loginWithGoogle(idToken: string): Promise<AuthResponse> {
-  const response = await api.post('/auth/google', { idToken });
-  return response.data;
-}

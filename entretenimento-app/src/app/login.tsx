@@ -1,16 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert, ActivityIndicator, KeyboardAvoidingView, Platform, ScrollView } from 'react-native';
 import { router } from 'expo-router';
-import { AntDesign, FontAwesome, Ionicons } from '@expo/vector-icons';
-import * as WebBrowser from 'expo-web-browser';
-import * as Google from 'expo-auth-session/providers/google';
+import { AntDesign, Ionicons } from '@expo/vector-icons';
 import { useAuth } from '../services/AuthContext';
-import { GOOGLE_CLIENT_ID } from '../services/googleAuth';
-
-WebBrowser.maybeCompleteAuthSession();
 
 export default function Login() {
-  const { login, register, loginWithGoogle } = useAuth();
+  const { login, register } = useAuth();
   const [isLogin, setIsLogin] = useState(true);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -19,32 +14,6 @@ export default function Login() {
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-
-  const [googleRequest, googleResponse, googlePromptAsync] = Google.useIdTokenAuthRequest({
-    iosClientId: GOOGLE_CLIENT_ID.iosClientId,
-    androidClientId: GOOGLE_CLIENT_ID.androidClientId,
-    clientId: GOOGLE_CLIENT_ID.webClientId,
-  });
-
-  useEffect(() => {
-    if (googleResponse?.type === 'success') {
-      const { id_token } = googleResponse.params;
-      handleGoogleLogin(id_token);
-    }
-  }, [googleResponse]);
-
-  async function handleGoogleLogin(idToken: string) {
-    setLoading(true);
-    try {
-      await loginWithGoogle(idToken);
-      router.replace('/categoria');
-    } catch (error: any) {
-      const message = error?.response?.data?.message || 'Erro ao fazer login com Google';
-      Alert.alert('Erro', message);
-    } finally {
-      setLoading(false);
-    }
-  }
 
   function validarEmail(email: string) {
     const regex =
@@ -214,22 +183,6 @@ export default function Login() {
             </Text>
           </TouchableOpacity>
 
-          <View style={styles.dividerContainer}>
-            <View style={styles.dividerLine} />
-            <Text style={styles.dividerText}>ou</Text>
-            <View style={styles.dividerLine} />
-          </View>
-
-          <TouchableOpacity
-            style={styles.googleButton}
-            onPress={() => googlePromptAsync()}
-            disabled={loading || !googleRequest}
-          >
-            <FontAwesome name="google" size={20} color="#fff" />
-            <Text style={styles.googleButtonText}>
-              {isLogin ? 'Entrar com Google' : 'Cadastrar com Google'}
-            </Text>
-          </TouchableOpacity>
         </View>
       </ScrollView>
     </KeyboardAvoidingView>
@@ -301,35 +254,6 @@ const styles = StyleSheet.create({
   toggleText: {
     color: '#60A5FA',
     fontSize: 16,
-  },
-  dividerContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginVertical: 25,
-  },
-  dividerLine: {
-    flex: 1,
-    height: 1,
-    backgroundColor: '#333',
-  },
-  dividerText: {
-    color: '#888',
-    marginHorizontal: 15,
-    fontSize: 14,
-  },
-  googleButton: {
-    flexDirection: 'row',
-    backgroundColor: '#db4437',
-    paddingVertical: 14,
-    borderRadius: 8,
-    alignItems: 'center',
-    justifyContent: 'center',
-    gap: 12,
-  },
-  googleButtonText: {
-    color: '#fff',
-    fontSize: 18,
-    fontWeight: '600',
   },
   passwordContainer: {
     flexDirection: 'row',

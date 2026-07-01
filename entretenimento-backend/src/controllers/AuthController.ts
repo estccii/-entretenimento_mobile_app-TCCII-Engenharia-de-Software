@@ -38,7 +38,7 @@ export class AuthController {
 
       return res.json(result);
     } catch (error: any) {
-      if (error.message === 'Email ou senha inválidos' || error.message === 'Esta conta usa login com Google. Faça login com o Google.') {
+      if (error.message === 'Email ou senha inválidos') {
         return res.status(401).json({ message: error.message });
       }
       console.error('Erro ao logar:', error);
@@ -46,20 +46,4 @@ export class AuthController {
     }
   }
 
-  static async googleLogin(req: Request, res: Response) {
-    try {
-      const { idToken } = req.body;
-
-      if (!idToken) {
-        return res.status(400).json({ message: 'Token do Google é obrigatório' });
-      }
-
-      const result = await AuthService.loginWithGoogle(idToken);
-
-      return res.json(result);
-    } catch (error: any) {
-      console.error('Erro ao logar com Google:', error);
-      return res.status(401).json({ message: 'Token do Google inválido' });
-    }
-  }
 }

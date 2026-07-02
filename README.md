@@ -1,4 +1,4 @@
-## Requisitos
+### Requisitos
 
 Antes de executar o projeto, tenha instalado:
 
@@ -8,13 +8,11 @@ Antes de executar o projeto, tenha instalado:
 
 ### Instale as dependências
 
-```bash
 rode o comando npm install na pasta do aplicativo 'entretenimento-app' e na 'entretenimento-backend'
-```
 
 ### Rode a aplicação
 
-npx expo start na pasta 'entretenimento-app'
+npx expo start na pasta 'entretenimento-app' <br/>
 npm run dev na pasta 'entretenimento-backend'
 
 ### Configurações

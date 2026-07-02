@@ -28,4 +28,4 @@ DB_USER=postgres <br/>
 DB_PASSWORD=sehnaBancoDeDados <br/>
 DB_NAME=nomeBancoDeDados <br/>
 
-JWT_SECRET=watch-and-save-secret-key-ano
+JWT_SECRET=watch-and-save-secret-key-2026

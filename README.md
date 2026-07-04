@@ -25,7 +25,7 @@ PORT=3000
 DB_HOST=localhost <br/>
 DB_PORT=5432 <br/>
 DB_USER=postgres <br/>
-DB_PASSWORD=sehnaBancoDeDados <br/>
-DB_NAME=nomeBancoDeDados <br/>
+DB_PASSWORD=senhaBancoDeDados <br/>
+DB_NAME=watch_and_save <br/>
 
 JWT_SECRET=watch-and-save-secret-key-2026

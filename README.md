@@ -5,6 +5,7 @@ Antes de executar o projeto, tenha instalado:
 - Node.js
 - npm
 - PostgreSQL
+- Android Studio
 
 ### Instale as dependências
 

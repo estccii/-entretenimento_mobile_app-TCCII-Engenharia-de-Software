@@ -13,7 +13,7 @@ rode o comando npm install na pasta do aplicativo 'entretenimento-app' e na 'ent
 
 ### Rode a aplicação
 
-npx expo start na pasta 'entretenimento-app' <br/>
+npx expo start na pasta 'entretenimento-app' e abrir no emulador mobile 'Android Studio' <br/>
 npm run dev na pasta 'entretenimento-backend'
 
 ### Configurações
